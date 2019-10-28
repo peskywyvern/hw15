@@ -14,14 +14,14 @@ class Logger:
         self.filename = filename
 
     def __enter__(self):
+        self.file = open(f'files/{self.filename}', 'a')
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
+        self.file.close()
 
     def write(self, value):
-        with open(f'files/{self.filename}', 'a') as file:
-            file.write(f'[{time.time()}]   {value} \n')
+        self.file.write(f'[{time.time()}]   {value} \n')
 
 
 # example:
